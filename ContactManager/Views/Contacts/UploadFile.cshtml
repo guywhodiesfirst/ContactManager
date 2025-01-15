@@ -3,6 +3,18 @@
 }
 
 <h1>Upload CSV file</h1>
+<p>
+    Upload a CSV file with your contacts to add them to the database. 
+    The file must have the following columns:
+    <ol>
+        <li>name <em>(string)</em></li>
+        <li>birthDate <em>(date)</em></li>
+        <li>isMarried <em>(bool)</em></li>
+        <li>phone <em>(string)</em></li>
+        <li>salary <em>(decimal)</em></li>
+    </ol>
+    Please note that dates must be formatted in mm-dd-yyyy format.
+</p>
 <div class="col-4">
     <form method="post" enctype="multipart/form-data" asp-controller="Contacts" asp-action="UploadFile" class="form-control">
         <div class="mb-3">

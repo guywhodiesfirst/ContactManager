@@ -7,18 +7,22 @@ namespace ContactManager.Helpers
 {
     public class CsvUploadHandler
     {
-        public List<ContactDto> ParseCsv(IFormFile file)
+        public static List<ContactDto> ParseCsv(IFormFile file)
         {
+            if (file == null || file.Length == 0)
+            {
+                throw new CsvException("File cannot be empty");
+            }
             string extension = Path.GetExtension(file.FileName);
             if (extension != ".csv")
             {
-                throw new CsvException("Extension is not valid - should be .csv");
+                throw new CsvException("File extension is not valid - should be .csv");
             }
 
             long size = file.Length;
             if (size > 1 * 1024 * 1024)
             {
-                throw new CsvException("File size should not exceed 1 mb");
+                throw new CsvException("File size should not exceed 1mb");
             }
 
             try
@@ -33,9 +37,10 @@ namespace ContactManager.Helpers
                     }
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw new CsvException(ex.Message);
+                throw new CsvException("Error occurred while processing your file. " +
+                    "Please ensure the CSV file has the required columns and that their data types match");
             }
         }
     }
