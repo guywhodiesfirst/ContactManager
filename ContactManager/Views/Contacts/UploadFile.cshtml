@@ -1,0 +1,18 @@
+﻿@{
+    ViewData["Title"] = "Upload CSV";
+}
+
+<h1>Upload CSV file</h1>
+<div class="col-4">
+    <form method="post" enctype="multipart/form-data" asp-controller="Contacts" asp-action="UploadFile" class="form-control">
+        <div class="mb-3">
+            <input type="file" name="file" accept=".csv" />
+        </div>
+        <div class="mb-3">
+            <input type="submit" value="Submit" class="btn btn-primary" />
+        </div>
+        <span class="text-success">
+            @ViewBag.Message
+        </span>
+    </form>
+</div>
