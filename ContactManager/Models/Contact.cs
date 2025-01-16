@@ -1,4 +1,6 @@
-﻿namespace ContactManager.Models
+﻿using System.ComponentModel;
+
+namespace ContactManager.Models
 {
     public class Contact
     {

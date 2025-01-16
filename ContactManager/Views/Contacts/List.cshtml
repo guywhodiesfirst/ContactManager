@@ -1,0 +1,55 @@
+﻿@model List<Contact>
+@{
+	ViewData["Title"] = "Contact List";
+}
+<h1>@ViewData["Title"]</h1>
+@if (Model != null && Model.Any())
+{
+	<form>
+		<table class="table table-responsive table-hover table-bordered">
+			<thead>
+				<tr class="table-active">
+					<th>Name</th>
+					<th>Birth Date</th>
+					<th>Is Married</th>
+					<th>Phone</th>
+					<th>Salary</th>
+					<th>Delete</th>
+				</tr>
+			</thead>
+			<tbody>
+				@foreach (var contact in Model)
+				{
+					<tr>
+						<td>@contact.Name</td>
+						<td>@contact.BirthDate.ToString("MM-dd-yyyy")</td>
+						<td>@contact.IsMarried</td>
+						<td>@contact.Phone</td>
+						<td>@contact.Salary</td>
+						<td>
+							<button class="btn btn-danger btn-delete"
+								asp-action="Delete"
+								asp-controller="Contacts"
+								asp-route-id="@contact.Id"
+							>
+								Delete
+							</button>
+						</td>
+					</tr>
+				}
+			</tbody>
+		</table>
+	</form>
+}
+else
+{
+	<h3>Here your contacts will be displayed</h3>
+}
+
+<script>
+	document.querySelectorAll('th').forEach(th => {
+		th.addEventListener('click', () => {
+			console.log('Column clicked!');
+		});
+	});
+</script>

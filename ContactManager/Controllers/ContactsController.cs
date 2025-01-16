@@ -39,5 +39,36 @@ namespace ContactManager.Controllers
             }
             return View();
         }
+
+        [HttpGet]
+        public IActionResult List()
+        {
+            var contacts = _context.Contacts.ToList();
+            return View(contacts);
+        }
+
+        [HttpGet]
+        public IActionResult Delete(Guid id)
+        {
+            var contact = _context.Contacts.FirstOrDefault(x => x.Id == id);
+            if (contact is null)
+            {
+                return View("Error");
+            }
+            return View(contact);
+        }
+
+        [HttpPost, ActionName("Delete")]
+        public IActionResult DeleteContact(Guid id)
+        {
+            var contact = _context.Contacts
+                .FirstOrDefault(c => c.Id == id);
+            if (contact is not null)
+            {
+                _context.Contacts.Remove(contact);
+                _context.SaveChanges();
+            }
+            return RedirectToAction("List", "Contacts");
+        }
     }
 }

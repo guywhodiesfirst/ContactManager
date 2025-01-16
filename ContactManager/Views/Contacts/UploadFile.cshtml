@@ -18,12 +18,13 @@
 <div class="col-4">
     <form method="post" enctype="multipart/form-data" asp-controller="Contacts" asp-action="UploadFile" class="form-control">
         <div class="mb-3">
-            <input type="file" name="file" accept=".csv" />
+            <label class="form-label" for="fileInput">Upload CSV File</label>
+            <input class="form-control" type="file" id="fileInput" name="file" accept=".csv">
         </div>
         <div class="mb-3">
-            <input type="submit" value="Submit" class="btn btn-primary" />
+            <input type="submit" value="Submit" class="btn btn-primary w-100">
         </div>
-        <span class="text-success">
+        <span>
             @ViewBag.Message
         </span>
     </form>
