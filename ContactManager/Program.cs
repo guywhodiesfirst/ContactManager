@@ -1,6 +1,11 @@
 using ContactManager.Data;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Globalization;
+
+// Set culture to US to ensure that decimal values are processed correctly
+var cultureInfo = new CultureInfo("en-US");
+CultureInfo.CurrentCulture = cultureInfo;
+CultureInfo.DefaultThreadCurrentCulture = cultureInfo;
 
 var builder = WebApplication.CreateBuilder(args);
 

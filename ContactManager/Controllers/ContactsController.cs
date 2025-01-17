@@ -2,6 +2,7 @@
 using ContactManager.Helpers;
 using ContactManager.Exceptions;
 using ContactManager.Data;
+using ContactManager.Models;
 
 namespace ContactManager.Controllers
 {
@@ -66,6 +67,29 @@ namespace ContactManager.Controllers
             if (contact is not null)
             {
                 _context.Contacts.Remove(contact);
+                _context.SaveChanges();
+            }
+            return RedirectToAction("List", "Contacts");
+        }
+
+        [HttpPost]
+        public IActionResult Edit(Contact contact) 
+        {
+            Console.WriteLine(contact.Salary    );
+            Console.WriteLine(ModelState.IsValid);
+            var contactInDb = _context.Contacts.FirstOrDefault(x => x.Id == contact.Id);
+            if (contactInDb is null)
+            {
+                return View("Error");
+            }
+            if (ModelState.IsValid)
+            {
+                contactInDb.BirthDate = contact.BirthDate;
+                contactInDb.IsMarried = contact.IsMarried;
+                contactInDb.Salary = contact.Salary;
+                contactInDb.Name = contact.Name;
+                contactInDb.Phone = contact.Phone;
+                _context.Contacts.Update(contactInDb);
                 _context.SaveChanges();
             }
             return RedirectToAction("List", "Contacts");

@@ -1,4 +1,4 @@
-﻿using System.ComponentModel;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace ContactManager.Models
 {
@@ -9,6 +9,7 @@ namespace ContactManager.Models
         public DateTime BirthDate { get; set; }
         public bool IsMarried { get; set; }
         public string Phone { get; set; } = string.Empty;
+        [DataType(DataType.Currency)]
         public decimal Salary { get; set; }
     }
 }
