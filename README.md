@@ -2,8 +2,8 @@
 A simple ASP.NET Core MVC application to help you manage your contacts.
 
 ## How to run
-Clone the repository and create the database using the **dotnet ef database update** command.
-Run the app with **dotnet run** command.
+Clone the repository. Create an appsettings.json file with an SQL Server connection string named "ContactManager", then create the database using the **dotnet ef database update** command.
+Run the application with **dotnet run** command.
 
 ## Adding new contacts
 To add new contacts to the list, upload a CSV file with the following columns:

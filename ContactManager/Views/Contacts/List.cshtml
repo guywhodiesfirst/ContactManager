@@ -71,12 +71,8 @@ else
 @section scripts
 {
     <script type="text/javascript">
-        document.querySelectorAll('th').forEach(th => {
-            th.addEventListener('click', () => {
-                console.log('Column clicked!');
-            });
-        });
-
+        
+        // Row editing logic
         $("body").on("click", "#table-contacts .edit", function () {
             var row = $(this).closest("tr");
             $("td", row).each(function () {
@@ -134,5 +130,21 @@ else
                 data: contactData
             })
         });
+
+        $("body").on('click', '#table-contacts .cancel', function() {
+            var row = $(this).closest("tr");
+            $("td", row).each(function () {
+                if($(this).find(".edit-field").length > 0) {
+                    var property = $(this).find(".contact-property");
+                    var editField = $(this).find(".edit-field");
+                    property.show();
+                    editField.hide();
+                }
+            })
+
+            row.find(".edit").show();
+            row.find(".save").hide();
+            $(this).hide();
+        })
     </script>
 }
